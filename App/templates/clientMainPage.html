@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>客户端首页</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	<div class="navbar-header">
+
+		<a class="navbar-brand" href="{{ url_for('blue.clientMainPage') }}">客户端首页</a>
+	</div>
+	<div class="collapse navbar-collapse" id="example-navbar-collapse">
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="{{ url_for('blue.logout') }}">客户端退出</a></li>
+			<li><a href="{{url_for('blue2.clientDrinkLook')}}">饮料信息查询</a></li>
+			<li class="dropdown">
+				<a href="" class="dropdown-toggle" data-toggle="dropdown">
+					书屋书籍服务 <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="{{ url_for('blue2.clientBookBorrow') }}">借阅书籍</a></li>
+					<li><a href="{{url_for('blue2.clientBookLook')}}">书籍信息查询</a></li>
+					<li><a href="{{url_for('blue2.clientBookAppointment')}}">个人借阅记录</a></li>
+                    <li><a href="{{url_for('blue2.clientPage')}} ">个人信息修改</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	</div>
+</nav>
+<div class="page-header">
+    <h1>客户端首页
+        <small>咖啡书屋为您带来最贴心舒适的阅读环境</small>
+    </h1>
+</div>
+
+<div class="container">
+   <div class="jumbotron">
+        <h1>欢迎光临咖啡书屋！</h1>
+        <p>咖啡书屋哈工程站全体员工竭诚为您服务。</p>
+       <button type="button" class="btn btn-primary btn-lg" data-toggle="collapse"
+		data-target="#demo">
+	隐藏个人信息
+</button>
+
+<div id="demo" class="collapse in">
+	 用户姓名：{{ username }} &nbsp; &nbsp;
+    用户性别:{{ userSex }}
+    &nbsp; &nbsp;	用户年龄：{{userage}}    用户学号：{{userID}}&nbsp; &nbsp;用户手机号：{{userPhone}} &nbsp;&nbsp;用户密码{{userPassword}}&nbsp; &nbsp;用户电子邮箱：{{userEmail}}&nbsp;
+</div>
+
+
+   </div>
+</div>
+
+<table class="table">
+				<thead>
+					<tr>
+						<th>
+							制作日程
+						</th>
+						<th>
+							工作内容
+						</th>
+						<th>
+							所遇困难
+						</th>
+						<th>
+							状态
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr class="success">
+						<td>
+							2019/12/23
+						</td>
+						<td>
+                            进行前端的制作。
+						</td>
+						<td>
+							搭建java环境。
+						</td>
+						<td>
+							停滞。
+						</td>
+					</tr>
+					<tr class="error">
+						<td>
+							2019/12/25
+						</td>
+						<td>
+							重修安装mysql 并改使用python进行开发。
+						</td>
+						<td>
+							flask轻量级开发。
+						</td>
+						<td>
+							停滞。
+						</td>
+					</tr>
+					<tr class="warning">
+						<td>
+							2019/12/29
+						</td>
+						<td>
+							实现了登录注册功能，进行XP开发。
+						</td>
+						<td>
+							时间紧，前期时间浪费多。
+						</td>
+						<td>
+							停滞。
+						</td>
+					</tr>
+					<tr class="info">
+						<td>
+							未完待续...
+						</td>
+						<td>
+							未完待续....
+						</td>
+						<td>
+							未完待续...
+						</td>
+						<td>
+							未完待续...
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-4 column">
+			<img alt="140x140" src="../static/images/7B0FD55EB210A8946DAD84FEAEA4264B.jpg" width="240" height="240"/>
+		</div>
+		<div class="col-md-4 column">
+			<img alt="140x140" src="../static/images/53C9F54A0D1B1630DBC1FB38379C9395.jpg" width="240" height="240"/>
+		</div>
+		<div class="col-md-4 column">
+			<img alt="140x140" src="../static/images/E582CA7DCF93A3FECD34106F16D86B87.jpg" width="240" height="240"/>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>个人借阅记录</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	<div class="navbar-header">
+
+		<a class="navbar-brand" href="{{ url_for('blue.clientMainPage') }}">客户端首页</a>
+	</div>
+	<div class="collapse navbar-collapse" id="example-navbar-collapse">
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="{{ url_for('blue.logout') }}">客户端退出</a></li>
+			<li><a href="{{url_for('blue2.clientDrinkLook')}}">饮料信息查询</a></li>
+			<li class="dropdown">
+				<a href="" class="dropdown-toggle" data-toggle="dropdown">
+					书屋书籍服务 <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="{{ url_for('blue2.clientBookBorrow') }}">借阅书籍</a></li>
+					<li><a href="{{url_for('blue2.clientBookLook')}}">书籍信息查询</a></li>
+					<li><a href="{{url_for('blue2.clientBookAppointment')}}">个人借阅记录</a></li>
+                    <li><a href="{{url_for('blue2.clientPage')}} ">个人信息修改</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	</div>
+</nav>
+<div class="page-header">
+    <h1>个人借阅记录
+        <small>咖啡书屋为您带来最贴心舒适的阅读环境</small>
+    </h1>
+</div>
+
+<div class="container">
+   <div class="jumbotron">
+        <h1>欢迎光临咖啡书屋！</h1>
+        <p>咖啡书屋哈工程站全体员工竭诚为您服务。</p>
+
+
+       <button type="button" class="btn btn-primary btn-lg" data-toggle="collapse"
+		data-target="#demo">
+	隐藏个人信息
+</button>
+
+<div id="demo" class="collapse in">
+	 用户姓名：{{ username }} &nbsp; &nbsp;
+    用户性别:{{ userSex }}
+    &nbsp; &nbsp;	用户年龄：{{userage}}    用户学号：{{userID}}&nbsp; &nbsp;用户手机号：{{userPhone}} &nbsp;&nbsp;用户密码{{userPassword}}&nbsp; &nbsp;用户电子邮箱：{{userEmail}}&nbsp;
+</div>
+
+
+   </div>
+
+        <table class="table">
+				<thead>
+					<tr>
+						<th>
+							借阅记录编号
+						</th>
+						<th>
+							借阅人编号
+						</th>
+						<th>
+							借阅书籍编号
+						</th>
+						<th>
+							借阅时间
+						</th>
+                        <th>
+							借阅该书数量
+						</th>
+
+
+					</tr>
+				</thead>
+            <tbody>
+                    {% for ap in quanbu %}
+					<tr>
+						<td>{{ ap.appointmentID }}</td>
+                        <td>{{ ap.userID }}</td>
+						<td>{{ ap.bookID }}</td>
+						<td>{{ ap.DataTime }}</td>
+                        <td>{{ ap.bookNum }}</td>
+					</tr>
+                    {% endfor %}
+                 </tbody>
+			</table>
+  当前页数：{{ paginate.page }}
+    总页数：{{ paginate.pages }}
+    一共有{{ paginate.total }}条数据
+<div class="col-md-12 column" style="text-align: center">
+			<ul class="pagination pagination-lg">
+                 {% if paginate.has_prev %}
+				<li>
+					 <a href="/clientBookAppointment/?page={{ paginate.prev_num }}">Prev</a>
+				</li>
+                  {% endif %}
+				 {% for i in paginate.iter_pages() %}
+                 <li>
+                        <a href="/clientBookAppointment/?page={{ i }}">{{ i }}</a>
+                 </li>
+                    {% endfor %}
+				 {% if paginate.has_next %}
+				<li>
+					 <a href="/clientBookAppointment/?page={{ paginate.next_num }}">Next</a>
+				</li>
+                 {% endif %}
+			</ul>
+		</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>用户书籍借阅</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	<div class="navbar-header">
+
+		<a class="navbar-brand" href="{{ url_for('blue.clientMainPage') }}">客户端首页</a>
+	</div>
+	<div class="collapse navbar-collapse" id="example-navbar-collapse">
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="{{ url_for('blue.logout') }}">客户端退出</a></li>
+			<li><a href="{{url_for('blue2.clientDrinkLook')}}">饮料信息查询</a></li>
+			<li class="dropdown">
+				<a href="" class="dropdown-toggle" data-toggle="dropdown">
+					书屋书籍服务 <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="{{ url_for('blue2.clientBookBorrow') }}">借阅书籍</a></li>
+					<li><a href="{{url_for('blue2.clientBookLook')}}">书籍信息查询</a></li>
+					<li><a href="{{url_for('blue2.clientBookAppointment')}}">个人借阅记录</a></li>
+                    <li><a href="{{url_for('blue2.clientPage')}} ">个人信息修改</a></li>
+				</ul>
+			</li>
+
+		</ul>
+	</div>
+	</div>
+</nav>
+<div class="page-header">
+    <h1>用户书籍借阅
+        <small>咖啡书屋为您带来最贴心舒适的阅读环境</small>
+    </h1>
+</div>
+
+<div class="container">
+   <div class="jumbotron">
+        <h1>欢迎光临咖啡书屋！</h1>
+        <p>咖啡书屋哈工程站全体员工竭诚为您服务。</p>
+       <button type="button" class="btn btn-primary btn-lg" data-toggle="collapse"
+		data-target="#demo">
+	隐藏个人信息
+</button>
+
+<div id="demo" class="collapse in">
+	 用户姓名：{{ username }} &nbsp; &nbsp;
+    用户性别:{{ userSex }}
+    &nbsp; &nbsp;	用户年龄：{{userage}}    用户学号：{{userID}}&nbsp; &nbsp;用户手机号：{{userPhone}} &nbsp;&nbsp;用户密码{{userPassword}}&nbsp; &nbsp;用户电子邮箱：{{userEmail}}&nbsp;
+</div>
+
+</div>
+  <form action="" method="post">
+借阅书籍编号: <input type="text" name="bookID" value="{{ bookID }}">
+借阅书籍数量:<input type="text" name="bookborrowNum" value="{{ bookborrowNum }}">
+<button type="submit">书籍借阅 </button >
+
+</form>
+
+
+<table class="table">
+				<thead>
+					<tr>
+						<th>
+							书籍名称
+						</th>
+						<th>
+							书籍编号
+						</th>
+						<th>
+							作者
+						</th>
+						<th>
+							馆藏数量
+						</th>
+                        <th>
+							书架号
+						</th>
+
+
+					</tr>
+				</thead>
+            <tbody>
+                    {% for book in quanbu %}
+					<tr>
+						<td>{{ book.bookName }}</td>
+                        <td>{{ book.bookID }}</td>
+						<td>{{ book.bookAuthor }}</td>
+						<td>{{ book.bookStorage }}</td>
+                        <td>{{ book.bookShelf }}</td>
+
+					</tr>
+                    {% endfor %}
+                 </tbody>
+			</table>
+当前页数：{{ paginate.page }}
+    总页数：{{ paginate.pages }}
+    一共有{{ paginate.total }}条数据
+<div class="col-md-12 column" style="text-align: center">
+			<ul class="pagination pagination-lg">
+                 {% if paginate.has_prev %}
+				<li>
+					 <a href="/clientBookBorrow/?page={{ paginate.prev_num }}">Prev</a>
+				</li>
+                  {% endif %}
+				 {% for i in paginate.iter_pages() %}
+                 <li>
+                        <a href="/clientBookBorrow/?page={{ i }}">{{ i }}</a>
+                 </li>
+                    {% endfor %}
+				 {% if paginate.has_next %}
+				<li>
+					 <a href="/clientBookBorrow/?page={{ paginate.next_num }}">Next</a>
+				</li>
+                 {% endif %}
+			</ul>
+
+
+ {% if flag==1 %}
+          <script>alert("借阅成功")</script>
+            {% endif %}
+            {% if flag==2%}
+          <script>alert("输入的数字不对或改书库存量小于你要的借阅量")</script>
+             {% endif %}
+            {% if flag==3%}
+            <script>alert("找不到要借阅书籍的编号")</script>
+             {% endif %}
+            {% if flag==4%}
+            <script>alert("输入借阅数为空")</script>
+             {% endif %}
+            {% if flag==5%}
+            <script>alert("请至少保留一本书留在店里为别的用户观看")</script>
+             {% endif %}
+
+
+
+
+
+
+
+   </div>
+</div>
+
+
+</body>
+</html>

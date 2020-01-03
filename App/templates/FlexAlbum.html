@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+        <title>主界面</title>
+		<link href="https://cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+		<style>
+            body {
+				margin: 0;
+				padding: 0;
+				background: #f1f1f1;
+				display: flex;
+				justify-content: center;
+			}
+
+
+			.menu {
+				margin: 0;
+				padding: 0;
+				margin-top: 20px;
+			}
+			.menu li {
+				list-style: none;
+				display: inline-block;
+			}
+			.menu li a {
+				text-decoration: none;
+				position: relative;
+				color: #313131;
+				font-size: 30px;
+				font-weight: 700;
+				font-family: sans-serif;
+				display: block;
+				overflow: hidden;
+				transition: 0.7s all;
+				padding: 14px 30px;
+				text-transform: uppercase;
+			}
+			.menu li a:before {
+				content: '';
+				width: 60px;
+				position: absolute;
+				border-bottom: 8px solid #313131;
+				bottom: 0;
+				right: 350px;
+				transition: 0.7s all;
+			}
+			.menu li a:hover:before {
+				right: 0;
+			}
+			* {
+				margin: 0;
+				padding: 0;
+				font-family: 'montserrat', sans-serif;
+				box-sizing: border-box;
+			}
+
+
+
+
+			.gallery-section {
+				width: 100%;
+				padding: 60px 0;
+				background: #f1f1f1;
+			}
+			.inner-width {
+				width: 100%;
+				max-width: 1200px;
+				margin: auto;
+				padding: 0 20px;
+			}
+			.gallery-section h1 {
+				text-align: center;
+				text-transform: uppercase;
+				color: #333;
+			}
+			.border {
+				width: 180px;
+				height: 4px;
+				background: #333;
+				margin: 60px auto;
+			}
+			.gallery-section .gallery {
+				display: flex;
+				flex-wrap: wrap-reverse;
+				justify-content: center;
+			}
+			.gallery-section .image {
+				flex: 25%;
+				overflow: hidden;
+				cursor: pointer;
+			}
+			.gallery-section .image img {
+				width: 100%;
+				height: 100%;
+				transition: 0.4s;
+			}
+			.gallery-section .image:hover img {
+				transform: scale(1.4) rotate(15deg);
+			}
+			@media screen and (max-width: 960px) {
+				.gallery-section .image {
+					flex: 33.33%;
+				}
+			}
+			@media screen and (max-width: 768px) {
+				.gallery-section .image {
+					flex: 50%;
+				}
+			}
+			@media screen and (max-width: 480px) {
+				.gallery-section .image {
+					flex: 100%;
+				}
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<div class="gallery-section">
+
+            <ul class="menu">
+			<li ><a href="/" style="color:deepskyblue">主页</a></li>
+			<li ><a href="/login" style="color:green">使用者登录</a></li>
+			<li ><a href="/register" style="color:purple">新使用者注册</a></li>
+			<li ><a href="http://lbsyun.baidu.com/jsdemo.htm#i8_1" style="color:peru">关于我们</a></li>
+            <li ><a href="/web_design" style="color:hotpink">开发者信息</a></li>
+            <li ><a href="/Loading" style="color:blue">未完待续</a></li>
+		</ul>
+
+			<div class="inner-width">
+                <div style="width: 1150px;height:20px"; align="center" >
+                                    <img src="../static/images/coffeebook.jpg" width="500" height="138" style="opacity: 0.98; " >
+
+                </div>
+
+				<div class="border"></div>
+                <p align="left">图片展示：</p>
+				<div class="gallery">
+					<a href="../static/images/71.jpg" class="image">
+						<img src="../static/images/71.jpg" alt="" />
+					</a>
+					<a href="../static/images/93.jpg" class="image">
+						<img src="../static/images/93.jpg" alt="" />
+					</a>
+					<a href="../static/images/104.jpg" class="image">
+						<img src="../static/images/104.jpg" alt="" />
+					</a>
+					<a href="../static/images/114.jpg" class="image">
+						<img src="../static/images/114.jpg" alt="" />
+					</a>
+					<a href="../static/images/156.jpg" class="image">
+						<img src="../static/images/156.jpg" alt="" />
+					</a>
+					<a href="../static/images/171.jpg" class="image">
+						<img src="../static/images/171.jpg" alt="" />
+					</a>
+					<a href="../static/images/264.jpg" class="image">
+						<img src="../static/images/264.jpg" alt="" />
+					</a>
+					<a href="../static/images/265.jpg" class="image">
+						<img src="../static/images/265.jpg" alt="" />
+					</a>
+				</div>
+			</div>
+		</div>
+		<script>
+			$('.gallery').magnificPopup({
+				delegate: 'a',
+				type: 'image',
+				gallery: {
+					enabled: true
+				}
+			})
+		</script>
+
+
+
+	</body>
+</html>

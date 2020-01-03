@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> 书籍信息更新</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<div>
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="{{ url_for('blue.mainPage') }}">管理员界面</a>
+    </div>
+    <div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="{{ url_for('blue.logout') }}">管理员登出</a></li>
+            <li class="active"><a href="{{ url_for('blue.notice')}}">系统帮助提醒</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    管理员服务 <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('blue1.manageSearch') }}">管理员信息查询</a></li>
+                    <li><a href="{{ url_for('blue1.manageUpdate') }}">管理员信息更新</a></li>
+                    <li><a href="{{ url_for('blue1.manageDelete') }}">管理员信息删除</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    饮品信息管理<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('blue1.bookInsert') }}">饮品信息插入</a></li>
+                    <li><a href="{{ url_for('blue1.bookSearch') }}">饮品信息查询</a></li>
+                    <li><a href="{{ url_for('blue1.bookUpdate') }}">饮品信息更新</a></li>
+                    <li><a href="{{ url_for('blue1.bookDelete') }}">饮品信息删除 </a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    书籍信息管理 <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('blue1.bookInsert') }}">书籍信息插入</a></li>
+                    <li><a href="{{ url_for('blue1.bookSearch') }}">书籍信息查询</a></li>
+                    <li><a href="{{ url_for('blue1.bookUpdate') }}">书籍信息更新</a></li>
+                    <li><a href="{{ url_for('blue1.bookDelete') }}">书籍信息删除 </a></li>
+                </ul>
+             </li>
+             <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    其它服务<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('blue1.recordDelete') }}">归还书籍</a></li>
+                    <li><a href="{{ url_for('blue1.cash') }}">收银</a></li>
+                </ul>
+             </li>
+        </ul>
+    </div>
+    </div>
+</nav>
+</div>
+<div class="jumbotron" >
+  <h1 style="color:#2d72d9">书籍信息更新</h1>
+</div>
+
+<div class="col-md-12 column">
+			<blockquote>
+				<p style="color: rebeccapurple">欢迎登录：</p>
+                <small>学号为{{ session.get('userID') }}的管理员 </small>
+			</blockquote>
+    <div class="page-header">
+				<h1 align="center">书籍信息更新</h1>
+
+
+<div>
+    <form action="" method="post">
+
+
+   &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
+书籍编号: <input type="text" name="bookID"maxlength="20" list="IDlist">
+    <datalist id="IDlist">
+                   {% for i in IDlist %}
+                    <option value={{ i }}>
+                {% endfor %}
+            </datalist>
+ &nbsp;  &nbsp;  &nbsp;
+<button type="submit" >查找 </button >
+
+</form>
+
+</div>
+
+        <table class="table">
+				<thead>
+					<tr>
+						<th>
+							书籍名称
+						</th>
+						<th>
+							书籍编号
+						</th>
+						<th>
+							作者
+						</th>
+						<th>
+							馆藏数量
+						</th>
+                        <th>
+							书架号
+						</th>
+
+
+					</tr>
+				</thead>
+            <tbody>
+                    {% for book in quanbu %}
+					<tr>
+						<td>{{ book.bookName }}</td>
+                        <td>{{ book.bookID }}</td>
+						<td>{{ book.bookAuthor }}</td>
+						<td>{{ book.bookStorage }}</td>
+                        <td>{{ book.bookShelf }}</td>
+
+					</tr>
+                    {% endfor %}
+                 </tbody>
+			</table>
+ {% if flag==1 %}
+ <script>alert("书籍号码未找到")</script>
+{% endif %}
+
+
+
+</div>
+    </div>
+</div>
+</body>
+</html>

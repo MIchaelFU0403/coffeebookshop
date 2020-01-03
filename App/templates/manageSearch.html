@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>管理员信息查询</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>
+
+<div>
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="{{ url_for('blue.mainPage') }}">管理员界面</a>
+    </div>
+    <div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="{{ url_for('blue.logout') }}">管理员登出</a></li>
+            <li class="active"><a href="{{ url_for('blue.notice')}}">系统帮助提醒</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    管理员服务 <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('blue1.manageSearch') }}">管理员信息查询</a></li>
+                    <li><a href="{{ url_for('blue1.manageUpdate') }}">管理员信息更新</a></li>
+                    <li><a href="{{ url_for('blue1.manageDelete') }}">管理员信息删除</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    饮品信息管理<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+
+                    <li><a href="{{ url_for('blue1.drinkInsert') }}">饮品信息插入</a></li>
+                    <li><a href="{{ url_for('blue1.drinkSearch') }}">饮品信息查询</a></li>
+                    <li><a href="{{ url_for('blue1.drinkUpdate') }}">饮品信息更新</a></li>
+                    <li><a href="{{ url_for('blue1.drinkDelete') }}">饮品信息删除 </a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    书籍信息管理 <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('blue1.bookInsert') }}">书籍信息插入</a></li>
+                    <li><a href="{{ url_for('blue1.bookSearch') }}">书籍信息查询</a></li>
+                    <li><a href="{{ url_for('blue1.bookUpdate') }}">书籍信息更新</a></li>
+                    <li><a href="{{ url_for('blue1.bookDelete') }}">书籍信息删除 </a></li>
+                </ul>
+             </li>
+             <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    其它服务<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('blue1.recordDelete') }}">归还书籍</a></li>
+                    <li><a href="{{ url_for('blue1.cash') }}">收银</a></li>
+                </ul>
+             </li>
+        </ul>
+    </div>
+    </div>
+</nav>
+</div>
+<div class="jumbotron" >
+  <h1 style="color:#2d72d9">管理员信息查询</h1>
+</div>
+
+<div class="col-md-12 column">
+			<blockquote>
+				<p style="color: rebeccapurple">欢迎登录：</p>
+                <small>学号为{{ session.get('userID') }}的管理员 </small>
+			</blockquote>
+
+
+    <div class="page-header">
+				<h1>用户信息查询</h1>
+ <div/>
+
+ <div>
+  <form action="" method="post">
+学号: <input type="text" name="userID"maxlength="7" >
+     &nbsp;&nbsp;
+名字: <input type="text" name="userName"maxlength="20" >
+ &nbsp;&nbsp;
+ &nbsp;&nbsp;
+{#性别：<select name="userSex">#}
+{#   <option  value=None>全部</option>#}
+{#    <option value="男">男</option>#}
+{#    <option  value="女">女</option>#}
+{#  </select>#}
+{#      身份：<select name="userPosition">#}
+{#    <option  value=None>全部</option>#}
+{#    <option value="U">普通用户</option>#}
+{#    <option  value="A">管理员</option>#}
+{#  </select>#}
+
+      性别：
+        <input type="radio" name="userSex" id="g_man" value="男">男
+        <input type="radio" name="userSex" id="g_woman" value="女">女
+
+        &nbsp;&nbsp; 身份：
+        <input type="radio" name="userPosition" id="admin" value="A">管理员
+        <input type="radio" name="userPosition" id="commonuser" value="U">普通用户
+
+<button type="submit">查找 </button >
+
+</form>
+
+</div>
+
+        <table class="table">
+				<thead>
+					<tr>
+						<th>
+							学号
+						</th>
+						<th>
+							姓名
+						</th>
+						<th>
+							性别
+						</th>
+						<th>
+							年龄
+						</th>
+                        <th>
+							电话号码
+						</th>
+						<th>
+							电子邮箱
+						</th>
+						<th>
+							身份
+						</th>
+
+					</tr>
+				</thead>
+            <tbody>
+                    {% for user in quanbu %}
+					<tr>
+						<td>{{ user.userID }}</td>
+                        <td>{{ user.userName }}</td>
+						<td>{{ user.userSex }}</td>
+						<td>{{ user.userAge }}</td>
+                        <td>{{ user.userPhone }}</td>
+                        <td>{{ user.userEmail }}</td>
+						<td>{{ user.userPosition }}</td>
+					</tr>
+                    {% endfor %}
+                 </tbody>
+			</table>
+
+    </div>
+</div>
+</body>
+</html>

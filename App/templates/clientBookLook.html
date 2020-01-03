@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> 书籍信息查询</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<div>
+
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	<div class="navbar-header">
+
+		<a class="navbar-brand" href="{{ url_for('blue.clientMainPage') }}">客户端首页</a>
+	</div>
+	<div class="collapse navbar-collapse" id="example-navbar-collapse">
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="{{ url_for('blue.logout') }}">客户端退出</a></li>
+			<li><a href="{{url_for('blue2.clientDrinkLook')}}">饮料信息查询</a></li>
+			<li class="dropdown">
+				<a href="" class="dropdown-toggle" data-toggle="dropdown">
+					书屋书籍服务 <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="{{ url_for('blue2.clientBookBorrow') }}">借阅书籍</a></li>
+					<li><a href="{{url_for('blue2.clientBookLook')}}">书籍信息查询</a></li>
+					<li><a href="{{url_for('blue2.clientBookAppointment')}}">个人借阅记录</a></li>
+                    <li><a href="{{url_for('blue2.clientPage')}} ">个人信息修改</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	</div>
+</nav>
+<div class="page-header">
+    <h1>书籍信息查询
+        <small>咖啡书屋为您带来最贴心舒适的阅读环境</small>
+    </h1>
+</div>
+
+<div class="container">
+   <div class="jumbotron">
+        <h1>欢迎光临咖啡书屋！</h1>
+
+<div>
+</div>
+    <form action="" method="post">
+书籍名称: <input type="text" name="bookName" maxlength="20"list="Namelist">
+    <datalist id="Namelist">
+                   {% for j in Namelist %}
+                    <option value={{ j}}>
+                {% endfor %}
+            </datalist>
+
+   &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
+书籍编号: <input type="text" name="bookID"maxlength="20" list="IDlist">
+    <datalist id="IDlist">
+                   {% for i in IDlist %}
+                    <option value={{ i }}>
+                {% endfor %}
+            </datalist>
+ &nbsp;  &nbsp;  &nbsp;
+<button type="submit" >查找 </button >
+
+</form>
+</div>
+
+        <table class="table">
+				<thead>
+					<tr>
+						<th>
+							书籍名称
+						</th>
+						<th>
+							书籍编号
+						</th>
+						<th>
+							作者
+						</th>
+						<th>
+							馆藏数量
+						</th>
+                        <th>
+							书架号
+						</th>
+
+
+					</tr>
+				</thead>
+            <tbody>
+                    {% for book in quanbu %}
+					<tr>
+						<td>{{ book.bookName }}</td>
+                        <td>{{ book.bookID }}</td>
+						<td>{{ book.bookAuthor }}</td>
+						<td>{{ book.bookStorage }}</td>
+                        <td>{{ book.bookShelf }}</td>
+
+					</tr>
+                    {% endfor %}
+                 </tbody>
+			</table>
+ {% if flag==1 %}
+ <script>alert("书籍号码和书籍名不匹配")</script>
+{% endif %}
+
+
+
+</div>
+
+</div>
+</body>
+</html>

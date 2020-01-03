@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> 饮品购买</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<div>
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="{{ url_for('blue.mainPage') }}">管理员界面</a>
+    </div>
+    <div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="{{ url_for('blue.logout') }}">管理员登出</a></li>
+            <li class="active"><a href="{{ url_for('blue.notice')}}">系统帮助提醒</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    管理员服务 <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('blue1.manageSearch') }}">管理员信息查询</a></li>
+                    <li><a href="{{ url_for('blue1.manageUpdate') }}">管理员信息更新</a></li>
+                    <li><a href="{{ url_for('blue1.manageDelete') }}">管理员信息删除</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    饮品信息管理<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+
+                    <li><a href="{{ url_for('blue1.bookInsert') }}">饮品信息插入</a></li>
+                    <li><a href="{{ url_for('blue1.drinkSearch') }}">饮品信息查询</a></li>
+                    <li><a href="{{ url_for('blue1.drinkUpdate') }}">饮品信息更新</a></li>
+                    <li><a href="{{ url_for('blue1.drinkDelete') }}">饮品信息删除 </a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    书籍信息管理 <b class="caret"></b>
+                </a>
+                 <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('blue1.bookInsert') }}">书籍信息插入</a></li>
+                    <li><a href="{{ url_for('blue1.bookSearch') }}">书籍信息查询</a></li>
+                    <li><a href="{{ url_for('blue1.bookUpdate') }}">书籍信息更新</a></li>
+                    <li><a href="{{ url_for('blue1.bookDelete') }}">书籍信息删除 </a></li>
+                </ul>
+             </li>
+             <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    其它服务<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('blue1.recordDelete') }}">归还书籍</a></li>
+                    <li><a href="{{ url_for('blue1.cash') }}">收银</a></li>
+                </ul>
+             </li>
+        </ul>
+    </div>
+    </div>
+</nav>
+</div>
+<div class="jumbotron" >
+  <h1 style="color:#2d72d9">饮品购买</h1>
+</div>
+
+<div class="col-md-12 column">
+			<blockquote>
+				<p style="color: rebeccapurple">欢迎登录：</p>
+                <small>学号为{{ session.get('userID') }}的管理员 </small>
+			</blockquote>
+    <div class="page-header">
+				<h1 align="center">饮品购买</h1>
+    </div>
+</div>
+
+<div>
+    <form action="" method="post">
+
+饮品名称: <input type="text" name="dName" maxlength="20" style="width:200px;height: 40px" list="namelist" >
+            <datalist id="namelist">
+                   {% for i in namelist %}
+                    <option value={{ i }}>
+                {% endfor %}
+            </datalist>
+
+饮品购买量: <input type="text" name="buynum"maxlength="11" style="width: 200px ;height: 40px;"  >
+
+ &nbsp;&nbsp;
+<button type="submit" style="width: 60px ;height: 40px;" >查找 </button >
+
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    当日营业额: <input type="text" name="moneyTatal" maxlength="20" style="width:200px;height: 40px" value="{{ moneyTatal }}" readonly="readonly" />
+
+</form>
+
+</div>
+
+        <table class="table">
+				<thead>
+					<tr>
+						<th>
+							饮品编号
+						</th>
+						<th>
+							饮品名称
+						</th>
+						<th>
+							饮品剩余量
+						</th>
+						<th>
+							饮品售价
+						</th>
+                        <th>
+							饮品成本价
+						</th>
+
+
+					</tr>
+				</thead>
+            <tbody>
+                    {% for dk in quanbu %}
+					<tr>
+						<td>{{ dk.dID }}</td>
+                        <td>{{ dk.dName }}</td>
+						<td>{{ dk.dStorage }}</td>
+						<td>{{ dk.dSell }}</td>
+                        <td>{{ dk.dCost }}</td>
+
+					</tr>
+                    {% endfor %}
+                 </tbody>
+			</table>
+
+
+{% if flag==1 %}
+<script>alert("购买数量不能为空")</script>
+{% endif %}
+{% if flag==2 %}
+<script>alert("请输入要购买的饮品")</script>
+{% endif %}
+{% if flag==3 %}
+<script>alert("购买饮品数量输入不对，或超出范围")</script>
+{% endif %}
+{% if flag==4 %}
+<script>alert("购买成功")</script>
+{% endif %}
+
+</div>
+
+
+</body>
+</html>

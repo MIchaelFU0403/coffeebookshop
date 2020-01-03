@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+          <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+           <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+           <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+        <title>系统信息说明</title>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				width: 100%;
+				height: 100vh;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.container {
+				position: relative;
+				width: 320px;
+				height: 600px;
+				margin-top: 150px;
+				background: rgba(0, 0, 0, 0.1);
+				transform: rotate(-30deg) skew(22deg) scale(0.8);
+				transition: 0.5s;
+			}
+			.container img {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				transition: 0.4s;
+			}
+
+			.container:hover img:nth-child(4) {
+				transform: translate(160px, -160px);
+				opacity: 1;
+			}
+			.container:hover img:nth-child(3) {
+				transform: translate(120px, -120px);
+				opacity: 0.8;
+			}
+			.container:hover img:nth-child(2) {
+				transform: translate(80px, -80px);
+				opacity: 0.6;
+			}
+			.container:hover img:nth-child(1) {
+				transform: translate(40px, -40px);
+				opacity: 0.4;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<img src="../static/images/星空jpg" />
+			<img src="../static/images/星空.jpg" />
+			<img src="../static/images/星空.jpg" />
+			<img src="../static/images/星空.jpg" />
+		</div>
+
+<div class="container">
+  <h2>系统帮助提醒</h2>
+  <div class="card">
+    <div class="card-body">咖啡书屋为学生提供更好更贴心的阅读环境</div>
+  </div>
+    <div class="card">
+    <div class="card-body">该咖啡书屋管理系统可供普通用户和管理员进行使用</div>
+  </div>
+    <div class="card">
+    <div class="card-body">该管理系统为1.0，开发过程周期为2周。详细请见索引页开发者信息</div>
+  </div>
+     <div class="card">
+    <div class="card-body">管理员模块：分为3个主模块：管理员信息管理，书籍信息管理，饮品管理</div>
+  </div>
+     <div class="card">
+    <div class="card-body">用户模块：分为2个主模块：书籍信息查询，饮品信息查询</div>
+  </div>
+</div>
+	</body>
+
+</html>

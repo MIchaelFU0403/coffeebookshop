@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>注册界面</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="keywords" content="" />
+<link href="../static/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+<link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+<link href="http://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800,900" rel="stylesheet">
+</head>
+
+<div class="signupform">
+<h1>咖啡书屋账户注册界面</h1>
+	<div class="container">
+		<div class="agile_info">
+			<div class="w3l_form">
+				<div class="left_grid_info">
+					<h3>Welcome 欢迎!</h3>
+					<h4>咖啡书屋账户注册界面</h4>
+					<p>请管理员同学和普通用户同学在此填入自己的相关信息进行注册。</p>
+                    <br><br><br>
+                    <p>什么是咖啡书屋？</p>
+                    <p>书店、咖啡 和文创合为一体的产业已经发展得较为成熟了，光是北京和上海就有十几家比较著名的高颜值、
+                        多功能书店，还有不少书店已经在多个城市开了分店，“咖啡书店”的前景异常广阔。这种把书店、咖啡和文创产品融为一体的创意生活体验一体店，举几个有名的例子，言又几、方所、钟书阁、先锋、西西弗等等。</p>
+
+				</div>
+			</div>
+			<div class="w3_info">
+				<h2>注册账户</h2>
+                <p> </p>
+                <form action="#" method="post">
+
+                        <div class="input-group">
+							<span><i class="fa fa-user" aria-hidden="true"></i></span>
+							<input type="text" name="username" placeholder="姓名" maxlength="20" value="{{ username }}">
+						</div>
+
+                         <div class="input-group">
+							<span><i class="fa fa-user" aria-hidden="true"></i></span>
+							<input type="text" name="userage" placeholder="年龄" value="{{ userage }}">
+						</div>
+                        <div class="input-group">
+							<span><i class="fa fa-user" aria-hidden="true"></i></span>
+							<input type="text" name="userID" placeholder="学号" maxlength="7" value="{{ userID }}">
+						</div>
+
+						<div class="input-group">
+							<span><i class="fa fa-user" aria-hidden="true"></i></span>
+							<input type="text" name="userPhone" placeholder="手机号" maxlength="11" value="{{ userPhone }}">
+						</div>
+
+						<div class="input-group">
+							<span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+							<input type="email" name="email" placeholder="电子邮箱" maxlength="20" value="{{ userEmail }}">
+						</div>
+						<div class="input-group">
+							<span><i class="fa fa-lock" aria-hidden="true"></i></span>
+							<input type="Password" name="pwd1"  placeholder="密码" maxlength="20" value="{{ userPassword1 }}">
+						</div>
+
+						<div class="input-group">
+							<span><i class="fa fa-lock" aria-hidden="true"></i></span>
+							<input type="Password" name="pwd2" placeholder="确认密码" maxlength="20" value="{{ userPassword2 }}">
+						</div>
+
+                         <div> 性别：
+                            <input type="radio" name="gender" id="g_man" value="男">男
+                            <input type="radio" name="gender" id="g_woman" value="女">女
+
+                            &nbsp;&nbsp; 身份：
+                            <input type="radio" name="position" id="admin" value="A">管理员
+                            <input type="radio" name="position" id="commonuser" value="U">普通用户
+
+                        </div>
+
+
+
+                            {% if flag==1 %}
+                            <script>alert("ID被注册过了")</script>
+                            {% endif %}
+                            {% if flag==2%}
+                            <script>alert("手机号被注册过了")</script>
+                            {% endif %}
+                            {% if flag==3%}
+                                <script>alert("电子邮箱被注册过了")</script>
+                            {% endif %}
+                            {% if flag==4 %}
+                            <script>alert("手机号长度不为11位")</script>
+                            {% endif %}
+                            {% if flag==5%}
+                            <script>alert("两次密码输入不一致")</script>
+                            {% endif %}
+                            {% if flag==6%}
+                                <script>alert("输入信息不全")</script>
+                            {% endif %}
+
+							<button class="btn btn-danger btn-block" type="submit">Create Account</button >
+					</form>
+			</div>
+			<div class="clear"></div>
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+{##}
+{#<div class="container">#}
+{#    {% for message in get_flashed_messages() %}#}
+{#    <div class="alert alert-warning">#}
+{#        <button type="button" class="close" data-dismiss="alert">&times;</button>#}
+{#        {{ message }}#}
+{#    </div>#}
+{#    {% endfor %}#}
+{#    {% block page_content %}{% endblock %}#}
+{#</div>#}
+
+	</body>
+</html>

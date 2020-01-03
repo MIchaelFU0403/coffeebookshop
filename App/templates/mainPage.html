@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>管理员主页</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>
+
+<div>
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="{{ url_for('blue.mainPage') }}">管理员界面</a>
+    </div>
+    <div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="{{ url_for('blue.logout') }}">管理员登出</a></li>
+            <li class="active"><a href="{{ url_for('blue.notice')}}">系统帮助提醒</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    管理员服务 <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('blue1.manageSearch') }}">管理员信息查询</a></li>
+                    <li><a href="{{ url_for('blue1.manageUpdate') }}">管理员信息更新</a></li>
+                    <li><a href="{{ url_for('blue1.manageDelete') }}">管理员信息删除</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    饮品信息管理<b class="caret"></b>
+                </a>
+                 <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('blue1.drinkInsert') }}">饮品信息插入</a></li>
+                    <li><a href="{{ url_for('blue1.drinkSearch') }}">饮品信息查询</a></li>
+                    <li><a href="{{ url_for('blue1.drinkUpdate') }}">饮品信息更新</a></li>
+                    <li><a href="{{ url_for('blue1.drinkDelete') }}">饮品信息删除 </a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    书籍信息管理 <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('blue1.bookInsert') }}">书籍信息插入</a></li>
+                    <li><a href="{{ url_for('blue1.bookSearch') }}">书籍信息查询</a></li>
+                    <li><a href="{{ url_for('blue1.bookUpdate') }}">书籍信息更新</a></li>
+                    <li><a href="{{ url_for('blue1.bookDelete') }}">书籍信息删除 </a></li>
+                </ul>
+             </li>
+             <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    其它服务<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('blue1.recordDelete') }}">归还书籍</a></li>
+                    <li><a href="{{ url_for('blue1.cash') }}">收银</a></li>
+                </ul>
+             </li>
+        </ul>
+    </div>
+    </div>
+</nav>
+</div>
+<div class="jumbotron" >
+  <h1 style="color:#2d72d9">管理员主菜单界面</h1>
+</div>
+
+<div class="col-md-12 column">
+			<blockquote>
+				<p style="color: rebeccapurple">欢迎登录：</p>
+                <small>学号为{{ session.get('userID') }}的管理员 </small>
+			</blockquote>
+<button type="button" class="btn btn-primary" data-toggle="collapse"
+		data-target="#demo">
+	隐藏个人信息
+</button>
+
+<div id="demo" class="collapse in">
+	 管理员姓名：{{ username }} &nbsp; &nbsp;
+    管理员性别:{{ userSex }}
+    &nbsp; &nbsp;	管理员年龄：{{userage}}  &nbsp;&nbsp;管理员学号：{{userID}}&nbsp; &nbsp;管理员手机号：{{userPhone}} &nbsp;&nbsp;管理员密码{{userPassword}}&nbsp; &nbsp;管理员电子邮箱：{{userEmail}}&nbsp;
+</div>
+
+
+<table class="table">
+				<thead>
+					<tr>
+						<th>
+							制作日程
+						</th>
+						<th>
+							工作内容
+						</th>
+						<th>
+							所遇困难
+						</th>
+						<th>
+							状态
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr class="success">
+						<td>
+							2019/12/23
+						</td>
+						<td>
+                            进行前端的制作。
+						</td>
+						<td>
+							搭建java环境。
+						</td>
+						<td>
+							停滞。
+						</td>
+					</tr>
+					<tr class="error">
+						<td>
+							2019/12/25
+						</td>
+						<td>
+							重修安装mysql 并改使用python进行开发。
+						</td>
+						<td>
+							flask轻量级开发。
+						</td>
+						<td>
+							停滞。
+						</td>
+					</tr>
+					<tr class="warning">
+						<td>
+							2019/12/29
+						</td>
+						<td>
+							实现了登录注册功能，进行XP开发。
+						</td>
+						<td>
+							时间紧，前期时间浪费多。
+						</td>
+						<td>
+							停滞。
+						</td>
+					</tr>
+					<tr class="info">
+						<td>
+							未完待续...
+						</td>
+						<td>
+							未完待续....
+						</td>
+						<td>
+							未完待续...
+						</td>
+						<td>
+							未完待续...
+						</td>
+					</tr>
+				</tbody>
+			</table>
+</div>
+
+
+
+<table class="table">
+				<thead>
+
+						<th>
+							借阅记录编号
+						</th>
+						<th>
+							借阅人编号
+						</th>
+						<th>
+							借阅书籍编号
+						</th>
+
+						<th>
+							借阅时间
+						</th>
+                        <th>
+                            借阅书籍数量
+                        </th>
+
+
+					</tr>
+				</thead>
+            <tbody>
+                    {% for ap in quanbu %}
+					<tr>
+						<td>{{ ap.appointmentID }}</td>
+                        <td>{{ ap.userID }}</td>
+						<td>{{ ap.bookID }}</td>
+						<td>{{ ap.DataTime }}</td>
+                       <td>{{ ap.bookNum }}</td>
+
+					</tr>
+                    {% endfor %}
+                 </tbody>
+			</table>
+
+
+</body>
+</html>
